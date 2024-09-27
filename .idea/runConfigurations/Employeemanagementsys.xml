@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Employeemanagementsys" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="EmployeemanagementsysApiApplication.java" />
+    <module name="Employee-Management-System" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Employee-Management-System-api" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
