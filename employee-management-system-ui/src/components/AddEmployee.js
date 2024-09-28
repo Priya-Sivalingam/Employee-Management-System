@@ -22,7 +22,6 @@ const AddEmployee = () => {
     EmployeeService.saveEmployee(employee)
       .then((response) => {
         console.log(response);
-        navigate("/employeeList"); // Corrected typo here
       })
       .catch((error) => {
         console.log(error);
@@ -54,7 +53,7 @@ const AddEmployee = () => {
             id="firstName" // Added id for accessibility
             name="firstName"
             value={employee.firstName}
-            onChange={handleChange}
+            onChange={(e)=> handleChange(e)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           />
         </div>
@@ -67,7 +66,7 @@ const AddEmployee = () => {
             id="lastName" // Added id for accessibility
             name="lastName"
             value={employee.lastName}
-            onChange={handleChange}
+            onChange={(e)=> handleChange(e)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           />
         </div>
@@ -80,7 +79,7 @@ const AddEmployee = () => {
             id="emailId" // Added id for accessibility
             name="emailId"
             value={employee.emailId}
-            onChange={handleChange}
+            onChange={(e)=> handleChange(e)}
             className="h-10 w-96 border mt-2 px-2 py-2"
           />
         </div>
