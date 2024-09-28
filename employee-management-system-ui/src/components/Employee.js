@@ -29,7 +29,7 @@ const Employee = ({ employee, deleteEmployee }) => {
           Edit
         </button>
         <button
-          onClick={(e) => deleteEmployee(e, employee.id)}
+          onClick={(e, id) => deleteEmployee(e, employee.id)}
           className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
           aria-label={`Delete ${employee.firstName} ${employee.lastName}`}
         >

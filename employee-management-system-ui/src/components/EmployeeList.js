@@ -27,9 +27,12 @@ const EmployeeList = () => {
   const deleteEmployee = (e, id) => {
     e.preventDefault();
     EmployeeService.deleteEmployee(id).then((res) => {
-      setEmployees((prevElements) => {
-        return prevElements.filter((employee) => employee.id !== id);
-      });
+      if(employees){
+        setEmployees((prevElements) => {
+          return prevElements.filter((employee) => employee.id !== id);
+        });
+      }
+      
     }).catch((error) => {
       console.log("Error deleting employee:", error);
     });
