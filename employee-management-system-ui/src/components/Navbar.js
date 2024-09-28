@@ -1,28 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Button, Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu"; // Ensure this import works after installation
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Effect to check login status on component mount
+  useEffect(() => {
+    const token = localStorage.getItem("token"); // Replace with your token key
+    setIsLoggedIn(!!token); // Set login state based on token existence
+  }, []);
+
+  // Handle opening and closing the menu
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  // Function to handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Clear the token from local storage
+    setIsLoggedIn(false); // Update login status
+    navigate("/login"); // Navigate to login page
+  };
 
   return (
-    <div className="bg-gray-800 text-white shadow-lg">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-lg font-bold">Employee Management System</h1>
-          <div>
-          <button
-          onClick={() => navigate("/login")}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition duration-300">
-          Login
-        </button>
-            <button 
-            onClick={() => navigate("/register")}
-            className="ml-4 bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+    <AppBar position="static" color="primary">
+      <Toolbar className="container mx-auto">
+        {/* Menu button on the left */}
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleMenuOpen}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        {/* Title or branding in the center */}
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {isLoggedIn ? "Welcome Back!" : "Employee Management System"}
+        </Typography>
+
+        {/* Menu dropdown */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={() => { navigate("/profile"); handleMenuClose(); }}>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={() => { navigate("/settings"); handleMenuClose(); }}>
+            Settings
+          </MenuItem>
+        </Menu>
+
+        {/* Conditional rendering based on login status */}
+        {isLoggedIn ? (
+          <Button
+            color="inherit"
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
+        ) : (
+          <>
+            <Button
+              color="inherit"
+              onClick={() => navigate("/login")}
+            >
+              Login
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => navigate("/register")}
+            >
               Register
-            </button>
-          </div>
-        </div>
-      </div>
+            </Button>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
 

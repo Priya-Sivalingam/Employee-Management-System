@@ -6,23 +6,27 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false); // State for loading indicator
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage(""); // Clear previous messages
+    setLoading(true); // Set loading state
+
     try {
       const response = await axios.post("http://localhost:8080/api/auth/login", {
         username,
         password,
       });
-      
+
       // Assuming the backend sends a success message or token
       if (response.status === 200) {
         setMessage("Login successful!");
-        navigate(`/employeeList`)
-        // You can also redirect or store the token if needed
-        // e.g., localStorage.setItem("token", response.data.token);
+        // Optionally, store the token or user information if needed
+        localStorage.setItem("token", response.data.token); // Store token in local storage
+        // Redirect to employee list
+        navigate("/employeeList");
       }
     } catch (error) {
       // Improved error handling
@@ -31,6 +35,8 @@ const Login = () => {
       } else {
         setMessage("An error occurred. Please try again later.");
       }
+    } finally {
+      setLoading(false); // Reset loading state after attempt
     }
   };
 
@@ -60,12 +66,13 @@ const Login = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={loading} // Disable button while loading
         >
-          Login
+          {loading ? "Logging in..." : "Login"} {/* Change button text based on loading state */}
         </button>
       </form>
-      {message && <p className="mt-4 text-red-500">{message}</p>}
+      {message && <p className={`mt-4 ${message.includes("successful") ? "text-green-500" : "text-red-500"}`}>{message}</p>}
     </div>
   );
 };
