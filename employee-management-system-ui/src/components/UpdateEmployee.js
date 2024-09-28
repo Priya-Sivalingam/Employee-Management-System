@@ -3,21 +3,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import EmployeeService from "../services/EmployeeService";
 
 const UpdateEmployee = () => {
-  const { id } = useParams();
+  const{id} = useParams();
   const navigate = useNavigate();
   
   const [employee, setEmployee] = useState({
+    id: id,
     firstName: "",
     lastName: "",
     emailId: "",
   });
   
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEmployee((prev) => ({ ...prev, [name]: value }));
+    const  value  = e.target.value;
+    setEmployee({ ...employee, [e.target.name]: value });
   };
 
   useEffect(() => {
@@ -26,33 +25,17 @@ const UpdateEmployee = () => {
         const response = await EmployeeService.getEmployeeById(id);
         setEmployee(response.data);
       } catch (error) {
-        console.error(error);
-        setError("Failed to fetch employee data.");
-      } finally {
-        setLoading(false);
-      }
+        console.log(error);
+      } 
     };
     fetchData();
   }, [id]);
 
-  const updateEmployee = async (e) => {
+
+  const updateEmployee = (e) => {
     e.preventDefault();
-    try {
-      await EmployeeService.updateEmployee(employee, id);
-      navigate("/employeeList");
-    } catch (error) {
-      console.error(error);
-      setError("Failed to update employee.");
-    }
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
 
   return (
     <div className="flex max-w-2xl mx-auto shadow border-b">
