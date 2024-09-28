@@ -22,56 +22,77 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createEmployee(Employee employee) {
         EmployeeEntity employeeEntity = new EmployeeEntity();
 
+        // Copy all properties from Employee model to EmployeeEntity
         BeanUtils.copyProperties(employee, employeeEntity);
+
         employeeRepository.save(employeeEntity);
         return employee;
     }
 
     @Override
     public List<Employee> getAllEmployees() {
-        List<EmployeeEntity> employeeEntities
-                = employeeRepository.findAll();
+        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
 
+        // Map EmployeeEntity to Employee, including new fields
         List<Employee> employees = employeeEntities
                 .stream()
                 .map(emp -> new Employee(
                         emp.getId(),
                         emp.getFirstName(),
                         emp.getLastName(),
-                        emp.getEmailId()))
+                        emp.getEmailId(),
+                        emp.getPhoneNumber(),
+                        emp.getAddress(),
+                        emp.getHireDate(),
+                        emp.getBirthDate(),
+                        emp.getSalary(),
+                        emp.getAge(),
+                        emp.getExperience(),
+                        emp.getRole(),
+                        emp.getQualification()
+                ))
                 .collect(Collectors.toList());
-        return employees;
 
+        return employees;
     }
 
     @Override
     public boolean deleteEmployee(Long id) {
-        EmployeeEntity employee = employeeRepository.findById(id).get();
+        EmployeeEntity employee = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
         employeeRepository.delete(employee);
         return true;
     }
 
     @Override
     public Employee getEmployeeById(Long id) {
-        EmployeeEntity employeeEntity
-                = employeeRepository.findById(id).get();
+        EmployeeEntity employeeEntity = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
         Employee employee = new Employee();
+
+        // Copy all properties from EmployeeEntity to Employee model
         BeanUtils.copyProperties(employeeEntity, employee);
         return employee;
     }
 
     @Override
     public Employee updateEmployee(Long id, Employee employee) {
-        EmployeeEntity employeeEntity
-                = employeeRepository.findById(id).get();
-        employeeEntity.setEmailId(employee.getEmailId());
+        EmployeeEntity employeeEntity = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
+
+        // Update the entity with new values from Employee model
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
+        employeeEntity.setEmailId(employee.getEmailId());
+        employeeEntity.setPhoneNumber(employee.getPhoneNumber());
+        employeeEntity.setAddress(employee.getAddress());
+        employeeEntity.setHireDate(employee.getHireDate());
+        employeeEntity.setBirthDate(employee.getBirthDate());
+        employeeEntity.setSalary(employee.getSalary());
+        employeeEntity.setAge(employee.getAge());
+        employeeEntity.setExperience(employee.getExperience());
+        employeeEntity.setRole(employee.getRole());
+        employeeEntity.setQualification(employee.getQualification());
 
         employeeRepository.save(employeeEntity);
+
         return employee;
     }
-
-
-
 }

@@ -6,7 +6,12 @@ const Employee = ({ employee, deleteEmployee }) => {
 
   const editEmployee = (e, id) => {
     e.preventDefault();
-    navigate(`/editEmployee/${id}`)
+    navigate(`/editEmployee/${id}`);
+  };
+
+  const viewEmployee = (e, id) => {
+    e.preventDefault();
+    navigate(`/viewEmployee/${id}`); // Navigate to the profile page
   };
 
   return (
@@ -29,9 +34,15 @@ const Employee = ({ employee, deleteEmployee }) => {
         </button>
         <button
           onClick={(e, id) => deleteEmployee(e, employee.id)}
-          className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
+          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer ml-2"
         >
           Delete
+        </button>
+        <button
+          onClick={(e, id) => viewEmployee(e, employee.id)}
+          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer ml-2"
+        >
+          View
         </button>
       </td>
     </tr>

@@ -7,6 +7,7 @@ import UpdateEmployee from "./components/UpdateEmployee";
 import Login from "./Pages/login";
 import Home from "./Pages/Home";
 import Register from "./Pages/register";
+import EmployeeProfile from "./Pages/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/viewEmployee/:id" element={<EmployeeProfile />} />
           <Route path="/employeeList" element={<EmployeeList />} />
           <Route path="/addEmployee" element={<AddEmployee />} />
           <Route path="/editEmployee/:id" element={<UpdateEmployee />} />
