@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import EmployeeService from "../services/EmployeeService";
-import Employee from "./Employee";
+import Employee from "../Pages/Employee";
 
 const EmployeeList = () => {
   const navigate = useNavigate();
-
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState([]);
 
@@ -26,56 +25,63 @@ const EmployeeList = () => {
 
   const deleteEmployee = (e, id) => {
     e.preventDefault();
-    EmployeeService.deleteEmployee(id).then((res) => {
-      if(employees){
-        setEmployees((prevElements) => {
-          return prevElements.filter((employee) => employee.id !== id);
-        });
-      }
-      
-    }).catch((error) => {
-      console.log("Error deleting employee:", error);
-    });
+    EmployeeService.deleteEmployee(id)
+      .then((res) => {
+        if (employees) {
+          setEmployees((prevElements) => {
+            return prevElements.filter((employee) => employee.id !== id);
+          });
+        }
+      })
+      .catch((error) => {
+        console.log("Error deleting employee:", error);
+      });
   };
 
   return (
-    <div className="container mx-auto my-8">
-      <div className="h-12">
+    <div className="container mx-auto my-12 p-6 bg-gray-100 rounded-lg shadow-lg">
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold text-gray-700">Employee Directory</h2>
         <button
           onClick={() => navigate("/addEmployee")}
-          className="rounded bg-slate-600 text-white px-6 py-2 font-semibold">
-          Add Employee
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+        >
+          + Add Employee
         </button>
       </div>
-      <div className="flex shadow border-b">
-        <table className="min-w-full">
-          <thead className="bg-gray-50">
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-blue-50">
             <tr>
-              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              <th className="text-left font-semibold text-gray-600 uppercase tracking-wider py-4 px-6">
                 First Name
               </th>
-              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              <th className="text-left font-semibold text-gray-600 uppercase tracking-wider py-4 px-6">
                 Last Name
               </th>
-              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              <th className="text-left font-semibold text-gray-600 uppercase tracking-wider py-4 px-6">
                 Email ID
               </th>
-              <th className="text-right font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              <th className="text-right font-semibold text-gray-600 uppercase tracking-wider py-4 px-6">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white">
+          <tbody className="bg-white divide-y divide-gray-200">
             {loading ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
-                  Loading...
+                <td colSpan="4" className="text-center py-6">
+                  <div className="text-blue-500 text-lg font-semibold">
+                    Loading...
+                  </div>
                 </td>
               </tr>
             ) : employees.length === 0 ? (
               <tr>
-                <td colSpan="4" className="text-center py-4">
-                  No employees found.
+                <td colSpan="4" className="text-center py-6">
+                  <div className="text-gray-500 text-lg font-semibold">
+                    No employees found.
+                  </div>
                 </td>
               </tr>
             ) : (

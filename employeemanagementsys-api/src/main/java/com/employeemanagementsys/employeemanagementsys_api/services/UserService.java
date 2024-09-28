@@ -1,0 +1,20 @@
+package com.employeemanagementsys.employeemanagementsys_api.services;
+
+import com.employeemanagementsys.employeemanagementsys_api.model.User;
+import com.employeemanagementsys.employeemanagementsys_api.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+}
