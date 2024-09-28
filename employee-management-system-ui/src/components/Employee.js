@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const Employee = ({ employee, deleteEmployee }) => {
   const navigate = useNavigate();
-  const editEmployee = (e, id) => {
+
+  const editEmployee = (e) => {
     e.preventDefault();
-    navigate(`/editEmployee/${id}`);
+    navigate(`/editEmployee/${employee.id}`);
   };
 
   return (
@@ -20,16 +21,20 @@ const Employee = ({ employee, deleteEmployee }) => {
         <div className="text-sm text-gray-500">{employee.emailId}</div>
       </td>
       <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
-        <a
-          onClick={(e, id) => editEmployee(e, employee.id)}
-          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer">
+        <button
+          onClick={editEmployee}
+          className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer"
+          aria-label={`Edit ${employee.firstName} ${employee.lastName}`}
+        >
           Edit
-        </a>
-        <a
-          onClick={(e, id) => deleteEmployee(e, employee.id)}
-          className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer">
+        </button>
+        <button
+          onClick={(e) => deleteEmployee(e, employee.id)}
+          className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
+          aria-label={`Delete ${employee.firstName} ${employee.lastName}`}
+        >
           Delete
-        </a>
+        </button>
       </td>
     </tr>
   );

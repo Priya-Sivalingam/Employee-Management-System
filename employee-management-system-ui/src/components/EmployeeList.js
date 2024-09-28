@@ -7,7 +7,7 @@ const EmployeeList = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
-  const [employees, setEmployees] = useState(null);
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,8 +17,9 @@ const EmployeeList = () => {
         setEmployees(response.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchData();
   }, []);
@@ -26,11 +27,11 @@ const EmployeeList = () => {
   const deleteEmployee = (e, id) => {
     e.preventDefault();
     EmployeeService.deleteEmployee(id).then((res) => {
-      if (employees) {
-        setEmployees((prevElement) => {
-          return prevElement.filter((employee) => employee.id !== id);
-        });
-      }
+      setEmployees((prevElements) => {
+        return prevElements.filter((employee) => employee.id !== id);
+      });
+    }).catch((error) => {
+      console.log("Error deleting employee:", error);
     });
   };
 
@@ -61,16 +62,29 @@ const EmployeeList = () => {
               </th>
             </tr>
           </thead>
-          {!loading && (
-            <tbody className="bg-white">
-              {employees.map((employee) => (
+          <tbody className="bg-white">
+            {loading ? (
+              <tr>
+                <td colSpan="4" className="text-center py-4">
+                  Loading...
+                </td>
+              </tr>
+            ) : employees.length === 0 ? (
+              <tr>
+                <td colSpan="4" className="text-center py-4">
+                  No employees found.
+                </td>
+              </tr>
+            ) : (
+              employees.map((employee) => (
                 <Employee
                   employee={employee}
                   deleteEmployee={deleteEmployee}
-                  key={employee.id}></Employee>
-              ))}
-            </tbody>
-          )}
+                  key={employee.id}
+                />
+              ))
+            )}
+          </tbody>
         </table>
       </div>
     </div>

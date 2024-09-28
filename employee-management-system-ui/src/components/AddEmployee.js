@@ -10,7 +10,7 @@ const AddEmployee = () => {
     emailId: "",
   });
 
-  const navigaye = useNavigate();
+  const navigate = useNavigate(); // Corrected typo here
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -22,7 +22,7 @@ const AddEmployee = () => {
     EmployeeService.saveEmployee(employee)
       .then((response) => {
         console.log(response);
-        navigaye("/employeeList");
+        navigate("/employeeList"); // Corrected typo here
       })
       .catch((error) => {
         console.log(error);
@@ -46,48 +46,56 @@ const AddEmployee = () => {
           <h1>Add New Employee</h1>
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
-          <label className="block text-gray-600 text-sm font-normal">
+          <label htmlFor="firstName" className="block text-gray-600 text-sm font-normal">
             First Name
           </label>
           <input
             type="text"
+            id="firstName" // Added id for accessibility
             name="firstName"
             value={employee.firstName}
-            onChange={(e) => handleChange(e)}
-            className="h-10 w-96 border mt-2 px-2 py-2"></input>
+            onChange={handleChange}
+            className="h-10 w-96 border mt-2 px-2 py-2"
+          />
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
-          <label className="block text-gray-600 text-sm font-normal">
+          <label htmlFor="lastName" className="block text-gray-600 text-sm font-normal">
             Last Name
           </label>
           <input
             type="text"
+            id="lastName" // Added id for accessibility
             name="lastName"
             value={employee.lastName}
-            onChange={(e) => handleChange(e)}
-            className="h-10 w-96 border mt-2 px-2 py-2"></input>
+            onChange={handleChange}
+            className="h-10 w-96 border mt-2 px-2 py-2"
+          />
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
-          <label className="block text-gray-600 text-sm font-normal">
+          <label htmlFor="emailId" className="block text-gray-600 text-sm font-normal">
             Email
           </label>
           <input
             type="email"
+            id="emailId" // Added id for accessibility
             name="emailId"
             value={employee.emailId}
-            onChange={(e) => handleChange(e)}
-            className="h-10 w-96 border mt-2 px-2 py-2"></input>
+            onChange={handleChange}
+            className="h-10 w-96 border mt-2 px-2 py-2"
+          />
         </div>
 
         <div className="items-center justify-center h-14 w-full my-4 space-x-4 pt-4">
           <button
             onClick={saveEmployee}
-            className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6">
+            className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6"
+          >
             Save
           </button>
           <button
             onClick={reset}
-            className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6">
+            className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6"
+          >
             Clear
           </button>
         </div>
