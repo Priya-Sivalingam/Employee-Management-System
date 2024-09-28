@@ -1,17 +1,26 @@
-# Employee Management System API
+# Employee Management System (Full Stack)
 
-This project is a RESTful API for managing employee data, built using Spring Boot, Hibernate, and a MySQL database. The API allows users to create, retrieve, update, and delete employee information.
+This is a full-stack application for managing employee data, built using **Spring Boot** for the backend and **React.js** for the frontend. The system allows users to perform CRUD (Create, Read, Update, Delete) operations on employee records.
 
 ## Features
 - Add new employees.
-- Retrieve all employees.
+- View all employees.
 - Update employee details.
 - Delete employees.
-- Cross-Origin Resource Sharing (CORS) support.
+- Cross-Origin Resource Sharing (CORS) support between backend and frontend.
 
 ## Technologies Used
-- **Spring Boot**: Framework for building the API.
-- **Hibernate/JPA**: For ORM (Object-Relational Mapping) to interact with the MySQL database.
-- **MySQL**: The database used to store employee data.
-- **Lombok**: For reducing boilerplate code.
-- **Maven**: For dependency management and building the project.
+
+### Backend:
+- **Spring Boot**: For building REST APIs.
+- **Hibernate/JPA**: For ORM to interact with MySQL database.
+- **MySQL**: To store employee data.
+- **Lombok**: To reduce boilerplate code.
+- **Maven**: For dependency management.
+
+### Frontend:
+- **React.js**: For building the user interface.
+- **Axios**: For making API requests to the backend.
+- **Bootstrap**: For responsive and styled UI components.
+- **React Router**: For routing between different pages in the app.
+
