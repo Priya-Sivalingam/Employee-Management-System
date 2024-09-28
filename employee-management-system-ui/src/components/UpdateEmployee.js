@@ -3,39 +3,43 @@ import { useNavigate, useParams } from "react-router-dom";
 import EmployeeService from "../services/EmployeeService";
 
 const UpdateEmployee = () => {
-  const{id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
-  
   const [employee, setEmployee] = useState({
     id: id,
     firstName: "",
     lastName: "",
     emailId: "",
   });
-  
 
   const handleChange = (e) => {
-    const  value  = e.target.value;
+    const value = e.target.value;
     setEmployee({ ...employee, [e.target.name]: value });
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await EmployeeService.getEmployeeById(id);
+        const response = await EmployeeService.getEmployeeById(employee.id);
         setEmployee(response.data);
       } catch (error) {
         console.log(error);
-      } 
+      }
     };
     fetchData();
-  }, [id]);
-
+  }, []);
 
   const updateEmployee = (e) => {
     e.preventDefault();
-  }
-
+    console.log(employee);
+    EmployeeService.updateEmployee(employee, id)
+      .then((response) => {
+        navigate("/employeeList");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="flex max-w-2xl mx-auto shadow border-b">
@@ -51,10 +55,8 @@ const UpdateEmployee = () => {
             type="text"
             name="firstName"
             value={employee.firstName}
-            onChange={handleChange}
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            required
-          />
+            onChange={(e) => handleChange(e)}
+            className="h-10 w-96 border mt-2 px-2 py-2"></input>
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
           <label className="block text-gray-600 text-sm font-normal">
@@ -64,10 +66,8 @@ const UpdateEmployee = () => {
             type="text"
             name="lastName"
             value={employee.lastName}
-            onChange={handleChange}
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            required
-          />
+            onChange={(e) => handleChange(e)}
+            className="h-10 w-96 border mt-2 px-2 py-2"></input>
         </div>
         <div className="items-center justify-center h-14 w-full my-4">
           <label className="block text-gray-600 text-sm font-normal">
@@ -77,23 +77,19 @@ const UpdateEmployee = () => {
             type="email"
             name="emailId"
             value={employee.emailId}
-            onChange={handleChange}
-            className="h-10 w-96 border mt-2 px-2 py-2"
-            required
-          />
+            onChange={(e) => handleChange(e)}
+            className="h-10 w-96 border mt-2 px-2 py-2"></input>
         </div>
 
         <div className="items-center justify-center h-14 w-full my-4 space-x-4 pt-4">
           <button
             onClick={updateEmployee}
-            className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6"
-          >
+            className="rounded text-white font-semibold bg-green-400 hover:bg-green-700 py-2 px-6">
             Update
           </button>
           <button
             onClick={() => navigate("/employeeList")}
-            className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6"
-          >
+            className="rounded text-white font-semibold bg-red-400 hover:bg-red-700 py-2 px-6">
             Cancel
           </button>
         </div>
