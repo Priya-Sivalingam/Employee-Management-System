@@ -1,0 +1,80 @@
+[debug] [2024-09-29T19:10:23.130Z] : 
+[debug] [2024-09-29T19:10:23.131Z] : ----------------------------------------------------------------------
+[debug] [2024-09-29T19:10:23.131Z] : Command:      C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\zcatalyst-cli\lib\bin\catalyst.js deploy
+[debug] [2024-09-29T19:10:23.132Z] : CLI Version:  1.17.6
+[debug] [2024-09-29T19:10:23.132Z] : Platform:     win32
+[debug] [2024-09-29T19:10:23.132Z] : Node Version: v16.19.1
+[debug] [2024-09-29T19:10:23.134Z] : Time:         Mon Sep 30 2024 00:40:23 GMT+0530 (India Standard Time)
+[debug] [2024-09-29T19:10:23.134Z] : ----------------------------------------------------------------------
+[debug] [2024-09-29T19:10:23.134Z] : 
+[debug] [2024-09-29T19:10:24.031Z] : > authorizing via signed-in user option
+[debug] [2024-09-29T19:10:24.032Z] : > command requires scopes: ["ZohoCatalyst.projects.ALL","ZohoCatalyst.functions.ALL","ZohoCatalyst.webapp.ALL","ZohoCatalyst.appsail.Update"]
+[debug] [2024-09-29T19:10:24.046Z] : >>>> HTTP REQUEST : GET https://api.catalyst.zoho.com/baas/v1/project/16110000000008119 
+
+[debug] [2024-09-29T19:10:25.195Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Sun, 29 Sep 2024 19:10:22 GMT","content-type":"application/vnd.catalyst.v2+json","transfer-encoding":"chunked","connection":"close","set-cookie":["zalb_46512fd555=63dd9cf89a6678b816d9580ec827ee61; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=ea76cb23-c6ba-4354-a95f-db8420f2aa45;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=ea76cb23-c6ba-4354-a95f-db8420f2aa45;path=/;SameSite=Strict;Secure;priority=high"],"x-content-type-options":"nosniff","x-xss-protection":"1","cache-control":"private,no-cache,no-store,max-age=0,must-revalidate","pragma":"no-cache","expires":"Thu, 01 Jan 1970 00:00:00 GMT","x-frame-options":"DENY","strict-transport-security":"max-age=63072000"}
+
+[debug] [2024-09-29T19:10:25.199Z] : >>>> HTTP REQUEST : GET https://api.catalyst.zoho.com/baas/v1/project/16110000000008119/environment 
+
+[debug] [2024-09-29T19:10:27.223Z] : <<<< HTTP RESPONSE : 200
+Response Headers: {"server":"ZGS","date":"Sun, 29 Sep 2024 19:10:24 GMT","content-type":"application/vnd.catalyst.v2+json","transfer-encoding":"chunked","connection":"close","set-cookie":["zalb_46512fd555=bbdfb771565421abbe10f7a180903d28; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=c6df71a7-74bb-41b9-9a52-c3dadb5c9c35;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=c6df71a7-74bb-41b9-9a52-c3dadb5c9c35;path=/;SameSite=Strict;Secure;priority=high"],"x-content-type-options":"nosniff","x-xss-protection":"1","cache-control":"private,no-cache,no-store,max-age=0,must-revalidate","pragma":"no-cache","expires":"Thu, 01 Jan 1970 00:00:00 GMT","x-frame-options":"DENY","strict-transport-security":"max-age=63072000"}
+
+[debug] [2024-09-29T19:10:32.275Z] : >>>> HTTP REQUEST : PUT https://api.catalyst.zoho.com/baas/v1/project/16110000000008119/appsail/upsert 
+
+[debug] [2024-09-29T19:33:58.188Z] : CatalystError: API Error: write ECONNRESET
+    at API.<anonymous> (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:214:32)
+    at Generator.next (<anonymous>)
+    at C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:27:12)
+    at Request._callback (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:194:67)
+    at self.callback (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\node_modules\request\request.js:185:22)
+    at Request.emit (node:events:525:35)
+    at Request.onRequestError (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (node:events:513:28) {
+  status: 500,
+  exit: 2,
+  original: Error: write ECONNRESET
+      at WriteWrap.onWriteComplete [as oncomplete] (node:internal/stream_base_commons:94:16) {
+    errno: -4077,
+    code: 'ECONNRESET',
+    syscall: 'write'
+  },
+  context: undefined,
+  errorId: undefined,
+  arg: undefined,
+  skipHelp: false,
+  fileName: 'C:\\Users\\Q50\\AppData\\Roaming\\nvm\\v16.19.1\\node_modules\\zcatalyst-cli\\lib\\internal\\api'
+}
+[warn] [2024-09-29T19:33:58.190Z] : ‼ Deploy of AppSail [AppSail] was unsuccessful since API Error: write ECONNRESET
+[info] [2024-09-29T19:33:58.191Z] : 
+[error] [2024-09-29T19:33:58.191Z] : × appsail: deploy skipped
+[info] [2024-09-29T19:33:58.191Z] : 
+[error] [2024-09-29T19:33:58.192Z] : × No components deployed!
+[error] [2024-09-29T19:33:58.196Z] : × API Error: write ECONNRESET
+[debug] [2024-09-29T19:33:58.196Z] : Error Stack: CatalystError: API Error: write ECONNRESET
+    at API.<anonymous> (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:214:32)
+    at Generator.next (<anonymous>)
+    at C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:27:12)
+    at Request._callback (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\lib\internal\api.js:194:67)
+    at self.callback (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\node_modules\request\request.js:185:22)
+    at Request.emit (node:events:525:35)
+    at Request.onRequestError (C:\Users\Q50\AppData\Roaming\nvm\v16.19.1\node_modules\zcatalyst-cli\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (node:events:513:28)
+[debug] [2024-09-29T19:33:58.196Z] : Original Error: Error: write ECONNRESET
+    at WriteWrap.onWriteComplete [as oncomplete] (node:internal/stream_base_commons:94:16)
+[debug] [2024-09-29T19:33:58.196Z] : Error Status: 500
+[info] [2024-09-29T19:33:58.197Z] : Kindly contact Catalyst support [support@zohocatalyst.com] if you need any further assistance
+[debug] [2024-09-29T19:33:58.197Z] : EXEC ENDED with event: deploy, message: success
+[debug] [2024-09-29T19:33:58.197Z] : TOTAL DURATION OF COMMAND EXEC : 1414179
+[debug] [2024-09-29T19:33:58.213Z] : >>>> HTTP REQUEST : POST https://api.catalyst.zoho.com/baas/v1/cli/logs 
+<request body omitted>
+
+[debug] [2024-09-29T19:34:01.468Z] : <<<< HTTP RESPONSE : 400
+Response Headers: {"server":"ZGS","date":"Sun, 29 Sep 2024 19:33:58 GMT","content-type":"application/json;charset=ISO-8859-1","content-length":"147","connection":"close","set-cookie":["zalb_46512fd555=63dd9cf89a6678b816d9580ec827ee61; Path=/; Secure; HttpOnly","ZD_CSRF_TOKEN=afa7e821-a3b8-42d5-b9c2-e006658557b0;path=/;SameSite=None;Secure;priority=high","_zcsr_tmp=afa7e821-a3b8-42d5-b9c2-e006658557b0;path=/;SameSite=Strict;Secure;priority=high","JSESSIONID=97E502E2782AC1B674942134C2ECCB9A; Path=/; Secure; HttpOnly"],"x-content-type-options":"nosniff","x-xss-protection":"1","x-frame-options":"DENY","strict-transport-security":"max-age=63072000"}
+
+[debug] [2024-09-29T19:34:01.469Z] : Response Body : {"status":"failure","data":{"error_code":"INPUT_SIZE_MORE_THAN_ALLOWED","message":"Please check if the size of the input is in the correct range"}}
+
+[debug] [2024-09-29T19:34:01.470Z] : Unable to send debug log to server: HTTP Error: 400, Please check if the size of the input is in the correct range

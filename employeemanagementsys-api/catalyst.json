@@ -1,0 +1,16 @@
+
+{
+  "appsail": [
+    {
+      "source": "C:\\Users\\Q50\\OneDrive\\Desktop\\Contributions\\Employee Management System\\Employee-Management-System\\employeemanagementsys-api",
+      "name": "AppSail",
+      "predeploy": {
+        "script": "C:\\Users\\Q50\\OneDrive\\Desktop\\Contributions\\Employee Management System\\Employee-Management-System\\employeemanagementsys-api\\gradlew.bat build"
+      },
+      "runtime": "JAVA"
+    }
+  ],
+  "env": {
+    "JAVA_HOME": "C:\\Program Files\\Java\\jdk-17"
+  }
+}

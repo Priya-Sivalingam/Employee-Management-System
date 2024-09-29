@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000") // Adjust for your React app's URL
+@CrossOrigin(origins = "https://66f98fb7b606fe32b534bdd6--delightful-florentine-9d8812.netlify.app/") // Adjust for your React app's URL
 public class AuthController {
     @Autowired
     private UserService userService;

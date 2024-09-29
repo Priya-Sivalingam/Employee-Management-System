@@ -1,0 +1,30 @@
+{
+  "defaults": {
+    "project": 1,
+    "env": 1
+  },
+  "actives": {
+    "project": 1,
+    "env": 1
+  },
+  "projects": [
+    {
+      "idx": 1,
+      "id": "16110000000008119",
+      "name": "employeesys",
+      "domain": {
+        "id": "10089100538",
+        "name": "employeesys-867354253.development"
+      },
+      "timezone": "Asia/Colombo",
+      "env": [
+        {
+          "idx": 1,
+          "id": "867354253",
+          "name": "Development",
+          "type": 3
+        }
+      ]
+    }
+  ]
+}
