@@ -41,7 +41,7 @@ This is a full-stack application for managing employee data, built using **Sprin
 - **Gradle**: For dependency management.
 
 ### Frontend:
-- Demo https://66f98fb7b606fe32b534bdd6--delightful-florentine-9d8812.netlify.app/
+[Demo](https://66f98fb7b606fe32b534bdd6--delightful-florentine-9d8812.netlify.app/)
 - **React.js**: For building the user interface.
 - **Axios**: For making API requests to the backend.
 - **Bootstrap**: For responsive and styled UI components.
